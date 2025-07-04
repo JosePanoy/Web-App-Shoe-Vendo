@@ -1,0 +1,122 @@
+.landing-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 32px;
+}
+
+.landing-nav-logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #0f243e;
+    cursor: default;
+}
+
+.landing-nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.landing-nav-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: hue-rotate(180deg) saturate(1.5);
+}
+
+.landing-nav-divider {
+    height: 24px;
+    width: 1px;
+    background-color: #ccc;
+}
+
+.landing-nav-btn {
+    background: linear-gradient(90deg, #0f243e, #3e617f);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+@keyframes landing-nav-wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
+.landing-nav-icon:hover {
+    animation: landing-nav-wiggle 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+
+.landing-nav-btn:hover {
+    box-shadow: 0 4px 10px rgba(173, 216, 230, 0.5);
+}
+
+@media (max-width: 720px) {
+    .landing-nav-container {
+        padding: 12px 24px;
+    }
+
+    .landing-nav-logo {
+        font-size: 1.5rem;
+    }
+
+    .landing-nav-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+
+    .landing-nav-icons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .landing-nav-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-nav-container {
+        padding: 12px 20px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .landing-nav-logo {
+        font-size: 1.25rem;
+    }
+
+    .landing-nav-btn {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    .landing-nav-icons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .landing-nav-icon {
+        width: 18px;
+        height: 18px;
+
+    }
+}
