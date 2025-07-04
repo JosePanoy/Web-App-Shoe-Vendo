@@ -57,7 +57,7 @@ function MainContent() {
           transition={{ duration: 0.8, delay: 1.8 }}
           viewport={{ once: false, amount: 0.6 }}
         >
-          Tap the "Get Started" to begin your shoe sanitizing session.
+          Tap the "Get Started" to begin your shoe sanitizing sessions.
         </motion.p>
       </div>
 
