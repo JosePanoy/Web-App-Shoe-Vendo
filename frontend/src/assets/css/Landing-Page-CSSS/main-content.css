@@ -3,8 +3,9 @@
   width: 90%;
   height: 90vh;
   overflow: hidden;
-  margin: 100px auto;
+  margin: 80px auto;
 }
+
 
 .main-content-background {
   width: 100%;
@@ -92,6 +93,12 @@
     font-size: 2rem;
   }
 
+  .main-content-container {
+    width: 95%;
+    margin: 80px auto;
+  
+  }
+
   .main-content-subtitle {
     font-size: 1rem;
   }
@@ -113,6 +120,11 @@
 
   .main-content-subtitle {
     font-size: 0.9rem;
+  }
+
+  .main-content-container {
+    width: 95%;
+    margin: 50px auto;
   }
 
   .main-content-button {
@@ -162,5 +174,3 @@
     bottom: 0.5rem;
   }
 }
-
-

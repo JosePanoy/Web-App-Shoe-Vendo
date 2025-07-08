@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "../../assets/css/process_page/enter_gamil.css";
+import "../../assets/css/process_page/enter_gmail.css";
 import MainBackImage from "../../assets/img/main-back.jpg";
 
 function EnterGmailComponent() {
