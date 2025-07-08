@@ -19,9 +19,9 @@ function MainFooter() {
           src={WitLogo}
           alt="WIT Logo"
           className="main-footer__wit-icon"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: false, amount: 0.6 }}
         />
 
@@ -32,7 +32,7 @@ function MainFooter() {
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: false, amount: 0.6 }}
         >
-          Shoe Vendo by BSIT Students (2025–2026)
+          Shoe Sanitizing Vendo Web Application by WIT BSIT Students (2025–2026)
         </motion.span>
 
       </div>

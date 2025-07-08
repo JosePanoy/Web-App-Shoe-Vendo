@@ -30,15 +30,17 @@
 }
 
 .main-footer__wit-icon {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
 }
 
 .main-footer__text {
   white-space: nowrap;
-  font-weight: 500;
+  font-weight: 350;
   cursor: default;
+  font-size: 0.65rem;
+  color: rgb(30, 30, 30);
 }
 
 .main-footer__right {

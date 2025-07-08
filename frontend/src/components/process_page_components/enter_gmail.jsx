@@ -2,9 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import "../../assets/css/process_page/enter_gmail.css";
 import MainBackImage from "../../assets/img/main-back.jpg";
+import MainFooter from "../resuable-components/main-footer";
 
 function EnterGmailComponent() {
   return (
+    <>
     <div
       className="enter-gmail-container"
       style={{ backgroundImage: `url(${MainBackImage})` }}
@@ -88,6 +90,8 @@ function EnterGmailComponent() {
         Created for WIT Athletes, by WIT Students
       </motion.p>
     </div>
+    <MainFooter />
+    </>
   );
 }
 
