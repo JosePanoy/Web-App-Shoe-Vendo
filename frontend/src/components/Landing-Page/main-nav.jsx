@@ -24,7 +24,7 @@ function LandingPageMainNav() {
         </Link>
 
         <div className="landing-nav-divider" />
-        <Link to="/notification "button className="landing-nav-btn">Notifications</Link>
+        <Link to="/notification " className="landing-nav-btn">Notifications</Link>
       </div>
     </nav>
   );

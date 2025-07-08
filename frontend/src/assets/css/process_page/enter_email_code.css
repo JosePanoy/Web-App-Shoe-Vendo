@@ -1,4 +1,4 @@
-.enter-gmail-container {
+.enter-code-container {
     width: 90%;
     margin: 80px auto;
     height: 90vh;
@@ -11,44 +11,53 @@
     overflow: hidden;
     border-radius: 12px;
     position: relative;
+    border: 1px dotted red;
 }
 
 
-.enter-gmail-overlay {
+.enter-code-overlay {
     background-color: rgba(0, 0, 0, 0.4);
     padding: 2rem;
     border-radius: 1rem;
     text-align: center;
     max-width: 90%;
     width: 400px;
+    border: 1px solid gray;
 }
 
-.enter-gmail-title {
+.enter-code-title {
     font-size: 2rem;
     color: white;
     margin-bottom: 0.2rem;
     cursor: default;
 }
 
-.enter-gmail-subtitle {
+.enter-code-subtitle {
     font-size: 0.9rem;
     color: white;
-    margin-bottom: 2rem;
+    margin-bottom: 0.7rem;
     cursor: default;
 }
 
-.enter-gmail-box {
+.enter-code-box {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.enter-gmail-label {
-    font-size: 1rem;
+.enter-code-label {
+    font-size: 1.5rem;
     color: white;
 }
 
-.enter-gmail-input {
+
+.enter-code-label-confirm {
+    font-size: 0.8rem;
+    color: white;
+    margin-top: -5px;
+}
+
+.enter-code-input {
     padding: 0.75rem;
     font-size: 1rem;
     border-radius: 0.5rem;
@@ -56,7 +65,30 @@
     outline: none;
 }
 
-.enter-gmail-button {
+.code-input-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.code-input {
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  background-color: white;
+}
+.code-input:disabled {
+  background-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+
+.enter-code-button {
     padding: 0.75rem;
     font-size: 1rem;
     background-color: #1f2937;
@@ -66,13 +98,23 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-decoration: none;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
 }
 
-.enter-gmail-button:hover {
+.enter-code-button:hover {
     background-color: #374151;
 }
 
-.enter-gmail-note {
+.enter-code-button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+
+.enter-code-note {
     font-size: 0.75rem;
     color: white;
     margin-top: 1.5rem;
@@ -90,34 +132,41 @@
 
 
 @media (max-width: 720px) {
-    .enter-gmail-container {
+    .enter-code-container {
         width: 90%;
         margin: 80px auto;
         height: 90vh;
         padding: 1rem;
     }
 
-    .enter-gmail-overlay {
+    .enter-code-overlay {
         width: 90%;
         padding: 1.5rem;
+        margin: 0 auto;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
-    .enter-gmail-title {
+    .enter-code-title {
         font-size: 1.5rem;
     }
 
-    .enter-gmail-subtitle {
+    .enter-code-subtitle {
         font-size: 0.85rem;
         margin-bottom: 1.5rem;
     }
 
-    .enter-gmail-label,
-    .enter-gmail-input,
-    .enter-gmail-button {
+    .enter-code-label,
+    .enter-code-input,
+    .enter-code-button {
         font-size: 0.9rem;
     }
 
-    .enter-gmail-note {
+    .enter-code-label-confirm {
+    font-size: 0.8rem;
+}
+
+    .enter-code-note {
         font-size: 0.8rem;
         margin-top: 1rem;
     }
@@ -129,7 +178,7 @@
 
 
 @media (max-width: 480px) {
-    .enter-gmail-container {
+    .enter-code-container {
         width: 90%;
         margin: 80px auto;
         padding: 0.5rem;
@@ -138,24 +187,27 @@
     .enter-gmail-overlay {
         width: 95%;
         padding: 1rem;
+                margin: 0 auto;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
-    .enter-gmail-title {
+    .enter-code-title {
         font-size: 1.25rem;
     }
 
-    .enter-gmail-subtitle {
+    .enter-code-subtitle {
         font-size: 0.75rem;
         margin-bottom: 1rem;
     }
 
-    .enter-gmail-label,
-    .enter-gmail-input,
-    .enter-gmail-button {
+    .enter-code-label,
+    .enter-code-input,
+    .enter-code-button {
         font-size: 0.8rem;
     }
 
-    .enter-gmail-note {
+    .enter-code-note {
         font-size: 0.65rem;
         margin-top: 0.8rem;
     }
@@ -172,21 +224,21 @@
         margin: 80px auto;
     }
 
-    .enter-gmail-title {
+    .enter-code-title {
         font-size: 1rem;
     }
 
-    .enter-gmail-subtitle {
+    .enter-code -subtitle {
         font-size: 0.7rem;
     }
 
-    .enter-gmail-label,
-    .enter-gmail-input,
-    .enter-gmail-button {
+    .enter-code-label,
+    .enter-code-input,
+    .enter-code-button {
         font-size: 0.7rem;
     }
 
-    .enter-gmail-note {
+    .enter-code-note {
         font-size: 0.55rem;
         margin-top: 0.5rem;
     }
