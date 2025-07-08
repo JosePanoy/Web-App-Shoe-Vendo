@@ -156,7 +156,7 @@ function EnterEmailCode() {
             </motion.div>
 
             <motion.label
-              className="enter-code-label-confirm"
+              className="enter-code-label-confirm-ask"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}

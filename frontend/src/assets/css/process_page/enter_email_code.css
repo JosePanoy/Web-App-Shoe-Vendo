@@ -53,7 +53,15 @@
 .enter-code-label-confirm {
     font-size: 0.8rem;
     color: white;
+    margin-top: 5px;
+    margin-bottom: -15px;
+}
+
+.enter-code-label-confirm-ask {
+    font-size: 0.8rem;
+    color: white;
     margin-top: -5px;
+    margin-bottom: 5px;
 }
 
 .enter-code-input {
@@ -62,13 +70,14 @@
     border-radius: 0.5rem;
     border: none;
     outline: none;
+
 }
 
 .code-input-wrapper {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    margin: 1rem 0;
+    margin: 0.7rem 0;
 }
 
 .code-input {
@@ -143,18 +152,22 @@
     }
 
     .enter-code-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .enter-code-subtitle {
-        font-size: 0.85rem;
+        font-size: 1rem;
         margin-bottom: 1.5rem;
     }
 
-    .enter-code-label,
+
     .enter-code-input,
     .enter-code-button {
         font-size: 0.9rem;
+    }
+
+    .enter-code-label {
+        font-size: 1rem;
     }
 
     .enter-code-label-confirm {
@@ -169,6 +182,10 @@
     .enter-gmail-footer {
         font-size: 0.75rem;
     }
+
+    .enter-code-label-confirm-ask {
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -176,6 +193,10 @@
         width: 90%;
         margin: 80px auto;
         padding: 0.5rem;
+    }
+
+    .enter-code-label-confirm {
+        font-size: 0.8rem;
     }
 
     .enter-code-overlay {
@@ -187,7 +208,7 @@
     }
 
     .enter-code-title {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
 
     .enter-code-subtitle {
@@ -195,10 +216,14 @@
         margin-bottom: 1rem;
     }
 
-    .enter-code-label,
+
     .enter-code-input,
     .enter-code-button {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .enter-code-label {
+        font-size: 1rem;
     }
 
     .enter-code-note {
@@ -208,6 +233,10 @@
 
     .enter-gmail-footer {
         font-size: 0.6rem;
+    }
+
+    .enter-code-label-confirm-ask {
+        font-size: 0.7rem;
     }
 }
 
@@ -241,15 +270,27 @@
         font-size: 1rem;
     }
 
+    .enter-code-label-confirm-ask {
+        font-size: 0.6rem;
+    }
+
     .enter-code-subtitle {
         font-size: 0.7rem;
         margin-bottom: 0.8rem;
     }
 
-    .enter-code-label,
+
     .enter-code-input,
     .enter-code-button {
         font-size: 0.7rem;
+    }
+
+    .enter-code-label {
+        font-size: 0.9rem;
+    }
+
+    .enter-code-label-confirm {
+        font-size: 0.6rem;
     }
 
     .enter-code-note {
