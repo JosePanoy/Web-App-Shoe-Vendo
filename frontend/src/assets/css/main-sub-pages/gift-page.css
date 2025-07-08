@@ -1,0 +1,24 @@
+.gift-page__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  min-height: 40vh;
+  width: 70%;
+  height: 50vh;
+  margin: 100px auto;
+  margin-bottom: 20px;
+}
+
+.gift-page__message {
+  background-color: #fff8e1;
+  color: #8a6d00;
+  cursor: default;
+  padding: 1.5rem 2rem;
+  border: 1px solid #ffe58f;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}

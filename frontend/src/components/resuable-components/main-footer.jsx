@@ -41,9 +41,9 @@ function MainFooter() {
           src={FBLogo}
           alt="Facebook"
           className="main-footer__icon"
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 70 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
           viewport={{ once: false, amount: 0.6 }}
         />
 
@@ -51,9 +51,9 @@ function MainFooter() {
           src={InstagramLogo}
           alt="Instagram"
           className="main-footer__icon"
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 70 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
+          transition={{ duration: 0.8, delay: 1 }}
           viewport={{ once: false, amount: 0.6 }}
         />
       </div>
