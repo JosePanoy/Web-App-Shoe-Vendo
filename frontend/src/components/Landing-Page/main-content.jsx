@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "../../assets/css/Landing-Page-CSSS/main-content.css";
 import MainBack from "../../assets/img/main-back.jpg";
+import MainFooter from "../resuable-components/main-footer";
 
 function MainContent() {
   return (
+
+    <>
+    <div id="root">
     <div className="main-content-container">
       <motion.img
         initial={{ opacity: 0, x: -80 }}
@@ -85,6 +89,9 @@ function MainContent() {
         Created for WIT Athletes, by WIT Students.
       </motion.h3>
     </div>
+      <MainFooter />
+      </div>
+    </>
   );
 }
 
