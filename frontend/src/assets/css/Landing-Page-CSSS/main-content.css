@@ -1,9 +1,9 @@
 .main-content-container {
   position: relative;
-  width: 80%;
-  height: 80vh;
+  width: 90%;
+  height: 90vh;
   overflow: hidden;
-  margin: 20px auto;
+  margin: 100px auto;
 }
 
 .main-content-background {
