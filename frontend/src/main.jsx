@@ -9,6 +9,7 @@ import NotificationPage from './components/main-sub-pages/notification-page'
 import GiftPage from './components/main-sub-pages/gift-page'
 import UpdatePage from './components/main-sub-pages/update-page'
 import EnterEmailCode from './components/process_page_components/enter_email_code'
+import LoginAdmin from './components/admin-side/login-admin'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -22,6 +23,8 @@ root.render(
         <Route path="/updates" element={<UpdatePage />} />
         <Route path="/enter-code" element={<EnterEmailCode />} />
         <Route path="/gifts" element={<GiftPage />} />
+
+        <Route path="/admin-log" element={<LoginAdmin />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

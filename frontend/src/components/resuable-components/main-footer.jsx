@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import "../../assets/css/resuable-components/main-footer.css";
 import FBLogo from "../../assets/icons/facebook.png";
 import InstagramLogo from "../../assets/icons/instagram.png";
@@ -15,15 +16,17 @@ function MainFooter() {
       viewport={{ once: false, amount: 0.6 }}
     >
       <div className="main-footer__left">
-        <motion.img
-          src={WitLogo}
-          alt="WIT Logo"
-          className="main-footer__wit-icon"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: false, amount: 0.6 }}
-        />
+        <Link to="/admin-log">
+          <motion.img
+            src={WitLogo}
+            alt="WIT Logo"
+            className="main-footer__wit-icon"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: false, amount: 0.6 }}
+          />
+        </Link>
 
         <motion.span
           className="main-footer__text"
