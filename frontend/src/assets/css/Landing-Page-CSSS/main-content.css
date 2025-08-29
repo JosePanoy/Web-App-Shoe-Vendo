@@ -58,8 +58,9 @@
 
 .main-content-button {
   margin-top: 2rem;
-  padding: 0.5rem 2rem;
+  padding: 0.8rem 2.5rem;
   font-size: 0.8rem;
+  font-weight: 600;
   border: none;
   border-radius: 2rem;
   background: linear-gradient(to bottom, #0a2b4e 0%, #1e3c5d 50%, #2e4a75 75%, #373a6e 100%);

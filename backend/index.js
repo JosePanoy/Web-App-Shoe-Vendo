@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import basicRoutes from './routes/test_route.js';
+import authRoutes from './routes/authRoute.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 app.use('/', basicRoutes);
+app.use('/api', authRoutes);
 
 // Start server
 app.listen(PORT, () => {

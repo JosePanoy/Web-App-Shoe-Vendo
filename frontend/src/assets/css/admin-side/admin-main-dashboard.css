@@ -1,0 +1,290 @@
+.admin-dashboard__container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.admin-dashboard__sidebar {
+  width: 15%;
+  background: linear-gradient(to bottom, #1a1a1a 0%, #4f4f4f 50%, #f0f0f0 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.admin-main-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navbar-left h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: default;
+}
+
+.navbar-left p {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: #555;
+  cursor: default;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #212121;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.user-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #fff;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 500;
+  cursor: default;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #ccc;
+  cursor: default;
+}
+
+.admin-dashboard__logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-dashboard__menu-title {
+  margin-bottom: 10px;
+  font-weight: 350;
+  cursor: default;
+}
+
+.admin-dashboard__sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-dashboard__sidebar li {
+  padding: 10px 0;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 6px;
+  padding-left: 10px;
+  font-weight: 700;
+}
+
+.admin-dashboard__sidebar li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.admin-dashboard__main {
+  width: 85%;
+  padding: 40px;
+  box-sizing: border-box;
+  background-color: #f4f6f8;
+}
+
+.admin-dashboard__toggle-btn {
+  display: none;
+  margin-right: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #003050;
+  color: #fff;
+}
+
+.admin-dashboard__close-btn {
+  align-self: flex-end;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin-dashboard__logo {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard__container {
+    flex-direction: column;
+  }
+
+  .admin-dashboard__sidebar {
+    width: 50%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .admin-dashboard__main {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .admin-dashboard__toggle-btn {
+    display: block;
+  }
+
+  .admin-dashboard__logo {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-dashboard__sidebar {
+    width: 50%;
+  }
+
+  .admin-dashboard__main {
+    width: 100%;
+  }
+
+  .admin-dashboard__logo {
+    max-width: 120px;
+  }
+
+  .user-box{
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+
+      .user-box{
+    display: none;
+  }
+
+  .admin-dashboard__sidebar {
+    width: 50%;
+  }
+
+  .admin-dashboard__main {
+    width: 100%;
+  }
+
+  .admin-dashboard__logo {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 360px) {
+  .admin-main-navbar {
+    padding: 10px 12px;
+  }
+
+  .navbar-left h3 {
+    font-size: 1.2rem;
+  }
+
+  .navbar-left p {
+    font-size: 0.7rem;
+  }
+
+  .user-box {
+    padding: 8px 10px;
+    font-size: 1rem;
+    gap: 6px;
+  }
+
+  .user-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .user-role {
+    font-size: 10px;
+  }
+
+    .user-box{
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  .admin-main-navbar {
+    padding: 8px 10px;
+  }
+
+  .navbar-left h3 {
+    font-size: 1rem;
+  }
+
+  .navbar-left p {
+    font-size: 0.6rem;
+  }
+
+  .user-box {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    gap: 4px;
+  }
+
+  .user-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .user-role {
+    font-size: 9px;
+  }
+
+    .user-box{
+    display: none;
+  }
+}

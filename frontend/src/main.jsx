@@ -10,12 +10,13 @@ import GiftPage from './components/main-sub-pages/gift-page'
 import UpdatePage from './components/main-sub-pages/update-page'
 import EnterEmailCode from './components/process_page_components/enter_email_code'
 import LoginAdmin from './components/admin-side/login-admin'
+import AdminMainDashboard from './components/admin-side/admin-dashboard'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter>   
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/enter-gmail" element={<MainContentProcess />} />
@@ -25,6 +26,9 @@ root.render(
         <Route path="/gifts" element={<GiftPage />} />
 
         <Route path="/admin-log" element={<LoginAdmin />} />
+
+        <Route path="/admin" element={<AdminMainDashboard />} />
+        
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
