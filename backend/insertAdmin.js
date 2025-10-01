@@ -1,7 +1,8 @@
+//insertAdmin.js
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
-import Admin from './Models/admin.js';
+import Admin from './models/admin.js';
 
 dotenv.config();
 

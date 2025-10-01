@@ -1,0 +1,48 @@
+
+Base host examples:
+- Local: http://localhost:5000
+- API prefix: /api (mounted in `backend/index.js`)
+
+Auth routes (mounted at /api/auth)
+- POST http://localhost:5000/api/auth/login
+	Purpose: Authenticate user or admin. Accepts { pincode, password, role }. Returns JWT token and user info on success.
+
+- POST http://localhost:5000/api/auth/change-pincode
+	Purpose: Change an athlete's pincode. Accepts { idNumber, oldPincode, newPincode }. Protected.
+
+- GET http://localhost:5000/api/auth/admin-dashboard
+	Purpose: Simple protected admin-only route to verify admin access. Requires Authorization: Bearer <token>.
+
+Athlete routes (mounted at /api/athletes)
+- POST http://localhost:5000/api/athletes/register
+	Purpose: Register a new athlete. Accepts { idNumber, fname, lname, pincode } (pincode will be hashed). Protected (admin only).
+
+- GET http://localhost:5000/api/athletes/
+	Purpose: List all athletes (pincode excluded). Protected.
+
+Service routes (mounted at /api/service)
+- POST http://localhost:5000/api/service/request
+	Purpose: Create a service transaction (shoe cleaning). Accepts { serviceType, studentId }. Protected.
+
+- GET http://localhost:5000/api/service/status/:id
+	Purpose: Get transaction status by transaction id. Protected.
+
+- POST http://localhost:5000/api/service/complete/:id
+	Purpose: Mark a transaction complete. Protected.
+
+Machine routes (mounted at /api/machine)
+- GET http://localhost:5000/api/machine/status
+	Purpose: Get latest machine status (standby, in-use, error). Protected.
+
+Basic/test routes (mounted at /)
+- GET http://localhost:5000/
+	Purpose: Health check - returns "Backend is running ✅".
+
+- GET http://localhost:5000/test
+	Purpose: Test route - returns "Test route working".
+
+Notes:
+- All protected endpoints require header: Authorization: Bearer <JWT>
+- Replace `http://localhost:5000` with your production host and port when deployed.
+- For athlete vs user naming: controllers use `Athlete` model for service/auth flows and `User` model exists for other user types (check controllers for exact payloads expected).
+- Better try or test using postman

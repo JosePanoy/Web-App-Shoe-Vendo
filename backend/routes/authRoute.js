@@ -1,13 +1,16 @@
+//authRoute.js
 import express from 'express';
-import { login } from '../Controllers/login.js';
-import { verifyToken } from '../Middlewares/auth.js';
-
+import { login } from '../controllers/login.js';
+import { verifyToken } from '../middlewares/auth.js';
+import { changePincode } from '../controllers/authController.js';
 
 
 const router = express.Router();
 
 // Login route
 router.post('/login', login);
+
+router.post('/change-pincode', changePincode);
 
 // Admin dashboard route (protected)
 router.get('/admin-dashboard', verifyToken, (req, res) => {
