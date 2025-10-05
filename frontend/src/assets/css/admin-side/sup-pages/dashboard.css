@@ -1,0 +1,118 @@
+/* Dashboard styles (dash_compo__ prefix) */
+.dash_compo__root {
+	width: 100%;
+	cursor: default;
+}
+
+.dash_compo__container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.dash_compo__stats {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 18px;
+}
+
+.dash_compo__stat-card {
+	background: #fff;
+	padding: 18px;
+	border-radius: 10px;
+	box-shadow: 0 6px 18px rgba(22, 28, 36, 0.06);
+	cursor: default;
+	transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, background 220ms ease;
+	will-change: transform, box-shadow;
+}
+
+.dash_compo__stat-title {
+	font-size: 1rem;
+	color: #222;
+	margin-bottom: 8px;
+}
+
+.dash_compo__stat-value {
+	font-size: 1.5rem;
+	font-weight: 800;
+	color: #111;
+}
+
+.dash_compo__status--online { color: #2e8b2e; }
+.dash_compo__status--inline { color: #2e8b2e; font-weight: 700; }
+
+.dash_compo__info-row {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 18px;
+}
+
+.dash_compo__large-card, .dash_compo__small-card {
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 6px 18px rgba(22, 28, 36, 0.06);
+	transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, background 220ms ease;
+	will-change: transform, box-shadow;
+}
+
+.dash_compo__card-title {
+	margin: 0 0 12px 0;
+	font-size: 1.25rem;
+	color: #111;
+	cursor: default;
+}
+
+.dash_compo__bullet-list { margin: 0; padding-left: 18px; }
+
+.dash_compo__recent {
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 6px 18px rgba(22, 28, 36, 0.06);
+	transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, background 220ms ease;
+}
+
+/* Hover effects: subtle lift and shadow */
+.dash_compo__stat-card:hover,
+.dash_compo__large-card:hover,
+.dash_compo__small-card:hover,
+.dash_compo__recent:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 14px 30px rgba(22,28,36,0.12);
+	background: linear-gradient(180deg, #ffffff, #fbfbfb);
+}
+
+/* Table row hover */
+.dash_compo__table tbody tr:hover {
+	background: rgba(6,30,52,0.02);
+}
+
+/* Respect user reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+	.dash_compo__stat-card,
+	.dash_compo__large-card,
+	.dash_compo__small-card,
+	.dash_compo__recent {
+		transition: none !important;
+		transform: none !important;
+		box-shadow: none !important;
+	}
+}
+
+.dash_compo__table-wrap { overflow-x: auto; overflow-y: auto; max-height: 260px; }
+.dash_compo__table { width: 100%; border-collapse: collapse; }
+.dash_compo__table thead th { text-align: left; padding: 12px; background: #f6f7f8; position: sticky; top: 0; z-index: 2; }
+.dash_compo__table td { padding: 12px; border-top: 1px solid #eee; cursor: default; }
+.dash_compo__status--completed { color: #2e8b2e; font-weight: 700; }
+
+/* Responsive */
+@media (max-width: 900px) {
+	.dash_compo__stats { grid-template-columns: repeat(2, 1fr); }
+	.dash_compo__info-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+	.dash_compo__stats { grid-template-columns: 1fr; }
+}
+

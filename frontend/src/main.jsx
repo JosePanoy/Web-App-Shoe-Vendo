@@ -11,6 +11,10 @@ import UpdatePage from './components/main-sub-pages/update-page'
 import EnterEmailCode from './components/process_page_components/enter_email_code'
 import LoginAdmin from './components/admin-side/login-admin'
 import AdminMainDashboard from './components/admin-side/admin-dashboard'
+import DashboardComponent from './components/admin-side/sub-pages/dashboard'
+import UserConfigComponent from './components/admin-side/sub-pages/user-config'
+import MachineMonitoringComponent from './components/admin-side/sub-pages/machine-monitoring'
+import SettingsComponent from './components/admin-side/sub-pages/settings'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -27,7 +31,12 @@ root.render(
 
         <Route path="/admin-log" element={<LoginAdmin />} />
 
-        <Route path="/admin" element={<AdminMainDashboard />} />
+        <Route path="/admin" element={<AdminMainDashboard />}>
+          <Route index element={<DashboardComponent />} />
+          <Route path="settings" element={<SettingsComponent />} />
+          <Route path="user-config" element={<UserConfigComponent />} />
+          <Route path="machine" element={<MachineMonitoringComponent />} />
+        </Route>
         
       </Routes>
     </BrowserRouter>

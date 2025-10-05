@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink, Outlet } from 'react-router-dom'
 import { HiOutlineMenu } from 'react-icons/hi'
 import LogoutBtn from './sub-components/logout-btn'
 import AdminWelcome from './sub-components/admin-welcome'
@@ -75,10 +75,60 @@ function AdminMainDashboard () {
                 />
               </div>
               <p className='admin-dashboard__menu-title'>Menu</p>
-              <ul>
-                <li>Dashboard</li>
-                <li>Settings</li>
-                <li>Profile</li>
+              <ul className='admin-dashboard__menu-list'>
+                <li>
+                  <NavLink
+                    to="/admin"
+                    end
+                    className={({ isActive }) =>
+                      `admin-dashboard__link ${isActive ? 'active' : ''}`
+                    }
+                    onClick={() => {
+                      if (isMobile) closeSidebar()
+                    }}
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/admin/user-config"
+                    className={({ isActive }) =>
+                      `admin-dashboard__link ${isActive ? 'active' : ''}`
+                    }
+                    onClick={() => {
+                      if (isMobile) closeSidebar()
+                    }}
+                  >
+                    User Configurations
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/admin/machine"
+                    className={({ isActive }) =>
+                      `admin-dashboard__link ${isActive ? 'active' : ''}`
+                    }
+                    onClick={() => {
+                      if (isMobile) closeSidebar()
+                    }}
+                  >
+                    Machine Monitoring
+                  </NavLink>
+                </li>
+                                <li>
+                  <NavLink
+                    to="/admin/settings"
+                    className={({ isActive }) =>
+                      `admin-dashboard__link ${isActive ? 'active' : ''}`
+                    }
+                    onClick={() => {
+                      if (isMobile) closeSidebar()
+                    }}
+                  >
+                    Settings
+                  </NavLink>
+                </li>
               </ul>
             </div>
             <div className='sidebar-bottom'>
@@ -117,6 +167,10 @@ function AdminMainDashboard () {
               </div>
             </div>
           </nav>
+
+          <div className='admin-dashboard__content'>
+            <Outlet />
+          </div>
         </div>
       </div>
     </>
