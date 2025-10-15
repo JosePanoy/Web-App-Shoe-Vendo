@@ -8,6 +8,7 @@ import authRoutes from './routes/authRoute.js';
 import athleteRoutes from './routes/athleteRoute.js';
 import serviceRoutes from './routes/serviceRoute.js';
 import machineRoutes from './routes/machineRoute.js';
+import adminDashboardRoutes from './routes/adminDashRoute.js';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/athletes', athleteRoutes);
 app.use('/api/service', serviceRoutes);
 app.use('/api/machine', machineRoutes);
+app.use('/api/admin/dashboard', adminDashboardRoutes);
 
 // Start server
 app.listen(PORT, () => {

@@ -77,10 +77,56 @@ function AdminMainDashboard () {
                 />
               </div>
               <p className='admin-dashboard__menu-title'>Menu</p>
-              <ul>
-                <li>Dashboard</li>
-                <li>Settings</li>
-                <li>Profile</li>
+              <ul className='admin-dashboard__menu-list'>
+                <li>
+                  <NavLink
+                    to='/admin'
+                    end
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'admin-dashboard__link active'
+                        : 'admin-dashboard__link'
+                    }
+                  >
+                    <span className='label'>Dashboard</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to='/admin/user-config'
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'admin-dashboard__link active'
+                        : 'admin-dashboard__link'
+                    }
+                  >
+                    <span className='label'>User Configuration</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to='/admin/machine'
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'admin-dashboard__link active'
+                        : 'admin-dashboard__link'
+                    }
+                  >
+                    <span className='label'>Machine Status</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to='/admin/settings'
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'admin-dashboard__link active'
+                        : 'admin-dashboard__link'
+                    }
+                  >
+                    <span className='label'>Settings</span>
+                  </NavLink>
+                </li>
               </ul>
             </div>
             <div className='sidebar-bottom'>

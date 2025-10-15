@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import "../../../assets/css/admin-side/sup-pages/dashboard.css"
+
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = RAW_API_BASE.replace(/\/$/, '')
 
 const containerVariants = {
   hidden: {},
@@ -17,9 +20,54 @@ const itemVariants = {
 }
 
 function DashboardComponent() {
+  const [summary, setSummary] = useState({ registeredAthletes: 0 })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const loadSummary = useCallback(async () => {
+    setLoading(true)
+    setError('')
+    try {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        throw new Error('Authentication required.')
+      }
+
+      const res = await fetch(`${API_BASE_URL}/api/admin/dashboard/summary`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data?.message || 'Failed to load dashboard info.')
+      }
+
+      setSummary({
+        registeredAthletes: Number.isFinite(data?.registeredAthletes)
+          ? data.registeredAthletes
+          : 0
+      })
+    } catch (err) {
+      setError(err.message || 'Unable to load dashboard info.')
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    loadSummary()
+  }, [loadSummary])
+
+  const registeredAthletesDisplay = useMemo(() => {
+    if (loading) return 'Loading...'
+    return summary.registeredAthletes.toLocaleString()
+  }, [loading, summary.registeredAthletes])
+
   const stats = [
     { title: 'Machine Status', value: 'Online', valueClass: 'dash_compo__status--online' },
-    { title: 'Registered Athletes', value: '5' },
+    { title: 'Registered Athletes', value: registeredAthletesDisplay },
     { title: 'Rewards Claimed', value: '2' },
     { title: 'Maintenance Alerts', value: '1' },
   ]
@@ -49,6 +97,13 @@ function DashboardComponent() {
         initial='hidden'
         animate='show'
       >
+        {error && (
+          <div className='dash_compo__alert'>
+            <span>{error}</span>
+            <button type='button' onClick={loadSummary}>Retry</button>
+          </div>
+        )}
+
         <div className='dash_compo__stats'>
           {stats.map((s, i) => (
             <motion.div key={i} className='dash_compo__stat-card' variants={itemVariants}>

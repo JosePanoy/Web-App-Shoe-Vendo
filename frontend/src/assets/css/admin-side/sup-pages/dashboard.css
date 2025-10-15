@@ -10,6 +10,27 @@
 	gap: 20px;
 }
 
+.dash_compo__alert {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 12px 16px;
+	border-radius: 10px;
+	background: #fdecea;
+	color: #b3261e;
+	border: 1px solid rgba(179, 38, 30, 0.24);
+	font-size: 0.95rem;
+}
+
+.dash_compo__alert button {
+	background: transparent;
+	border: none;
+	color: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+
 .dash_compo__stats {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
