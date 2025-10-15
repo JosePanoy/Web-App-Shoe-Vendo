@@ -2,13 +2,15 @@
 import express from 'express';
 import { login } from '../controllers/login.js';
 import { verifyToken } from '../middlewares/auth.js';
-import { changePincode } from '../controllers/authController.js';
+import { changePincode, loginAthlete, logoutAthlete } from '../Controllers/authController.js';
 
 
 const router = express.Router();
 
 // Login route
 router.post('/login', login);
+router.post('/athlete/login', loginAthlete);
+router.post('/athlete/logout', logoutAthlete);
 
 router.post('/change-pincode', changePincode);
 

@@ -1,61 +1,86 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import Athlete from '../models/athlete.js';
-import Admin from "../models/admin.js"
+import Athlete from '../Models/athlete.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secretkey';
 
-export const login = async (req, res) => {
-  const { idNumber, pincode, role } = req.body || {};
-  if (!idNumber || !pincode || !role) {
-    return res.status(400).json({ message: 'Missing login fields' });
+export const loginAthlete = async (req, res) => {
+  const { idNumber, pincode } = req.body || {};
+
+  const trimmedId = (idNumber || '').toString().trim();
+  const trimmedPin = (pincode || '').toString().trim();
+
+  if (!/^\d{6}$/.test(trimmedId) || !/^\d{4}$/.test(trimmedPin)) {
+    return res.status(400).json({ message: 'Invalid credentials format.' });
   }
 
   try {
-    let account;
-    if (role === 'admin') {
-      account = await Admin.findOne({ email: idNumber });
-    } else {
-      account = await Athlete.findOne({ idNumber });
+    const athlete = await Athlete.findOne({ idNumber: trimmedId });
+    if (!athlete) {
+      return res.status(404).json({ message: 'Athlete account not found. Please contact an administrator.' });
     }
 
-    if (!account) return res.status(404).json({ message: 'Account not found' });
+    if (!athlete.pincode) {
+      return res.status(400).json({ message: 'Account not yet activated. Complete onboarding first.' });
+    }
 
-    const isMatch = await bcrypt.compare(pincode, account.pincode);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid pincode' });
+    const isMatch = await bcrypt.compare(trimmedPin, athlete.pincode);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Incorrect ID number or pincode.' });
+    }
 
-    const token = jwt.sign({ id: account._id, role }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: athlete._id, role: 'athlete', idNumber: athlete.idNumber }, JWT_SECRET, {
+      expiresIn: '2h'
+    });
 
     res.json({
       token,
-      role,
-      fname: account.fname,
-      lname: account.lname,
-      firstLogin: account.firstLogin
+      role: 'athlete',
+      fname: athlete.fname,
+      lname: athlete.lname,
+      idNumber: athlete.idNumber,
+      firstLogin: athlete.firstLogin
     });
   } catch (err) {
-    console.error("❌ Login error:", err);
+    console.error('Athlete login error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };
 
+export const logoutAthlete = async (_req, res) => {
+  return res.json({ message: 'Logout successful.' });
+};
+
 export const changePincode = async (req, res) => {
-  const { idNumber, oldPincode, newPincode } = req.body;
+  const { idNumber, oldPincode, newPincode } = req.body || {};
+
+  const trimmedId = (idNumber || '').toString().trim();
+  const trimmedOld = (oldPincode || '').toString().trim();
+  const trimmedNew = (newPincode || '').toString().trim();
+
+  if (!/^\d{6}$/.test(trimmedId)) {
+    return res.status(400).json({ message: 'ID number must be a 6-digit code.' });
+  }
+
+  if (!/^\d{4}$/.test(trimmedOld) || !/^\d{4}$/.test(trimmedNew)) {
+    return res.status(400).json({ message: 'Pincodes must be 4-digit codes.' });
+  }
+
   try {
-    const user = await Athlete.findOne({ idNumber });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    const athlete = await Athlete.findOne({ idNumber: trimmedId });
+    if (!athlete) return res.status(404).json({ message: 'Athlete not found.' });
 
-    const isMatch = await bcrypt.compare(oldPincode, user.pincode);
-    if (!isMatch) return res.status(400).json({ message: 'Old pincode incorrect' });
+    const isMatch = await bcrypt.compare(trimmedOld, athlete.pincode || '');
+    if (!isMatch) return res.status(400).json({ message: 'Old pincode incorrect.' });
 
-    const hashed = await bcrypt.hash(newPincode, 10);
-    user.pincode = hashed;
-    user.firstLogin = false;
-    await user.save();
+    const hashed = await bcrypt.hash(trimmedNew, 10);
+    athlete.pincode = hashed;
+    athlete.firstLogin = false;
+    await athlete.save();
 
-    res.json({ message: 'Pincode updated successfully' });
+    res.json({ message: 'Pincode updated successfully.' });
   } catch (err) {
-    console.error("❌ Change pincode error:", err);
+    console.error('Change pincode error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };

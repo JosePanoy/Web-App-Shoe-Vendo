@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import Athlete from '../Models/athlete.js';
 
 const sanitizeAthlete = (athlete) => ({
@@ -50,6 +51,69 @@ export const listAthletes = async (req, res) => {
     res.json(athletes.map(sanitizeAthlete));
   } catch (err) {
     console.error('Fetch athletes error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+export const completeAthleteOnboarding = async (req, res) => {
+  const {
+    idNumber,
+    pincode,
+    confirmPincode,
+    securityAnswers = {},
+    firstName,
+    lastName
+  } = req.body || {};
+
+  const trimmedId = (idNumber || '').toString().trim();
+  const trimmedPin = (pincode || '').toString().trim();
+  const trimmedConfirm = (confirmPincode || '').toString().trim();
+
+  if (!/^\d{6}$/.test(trimmedId)) {
+    return res.status(400).json({ message: 'ID number must be a 6-digit code.' });
+  }
+
+  if (!/^\d{4}$/.test(trimmedPin)) {
+    return res.status(400).json({ message: 'Pincode must be a 4-digit code.' });
+  }
+
+  if (trimmedPin !== trimmedConfirm) {
+    return res.status(400).json({ message: 'Pincode confirmation does not match.' });
+  }
+
+  try {
+    const athlete = await Athlete.findOne({ idNumber: trimmedId });
+    if (!athlete) {
+      return res.status(404).json({ message: 'Athlete record not found. Please contact an administrator.' });
+    }
+
+    if (!athlete.firstLogin) {
+      return res.status(400).json({ message: 'Athlete already completed onboarding.' });
+    }
+
+    const hashedPin = await bcrypt.hash(trimmedPin, 10);
+    athlete.pincode = hashedPin;
+    athlete.firstLogin = false;
+    athlete.fname = (firstName || '').toString().trim() || athlete.fname;
+    athlete.lname = (lastName || '').toString().trim() || athlete.lname;
+
+    athlete.securityAnswers = {
+      fullName: (securityAnswers.fullName || '').toString().trim(),
+      firstName: (securityAnswers.firstName || '').toString().trim(),
+      lastName: (securityAnswers.lastName || '').toString().trim(),
+      favoriteLunchFood: (securityAnswers.favoriteLunchFood || '').toString().trim(),
+      extraAnswer: (securityAnswers.extraAnswer || '').toString().trim(),
+      extraQuestionLabel: (securityAnswers.extraQuestionLabel || '').toString().trim()
+    };
+
+    await athlete.save();
+
+    res.json({
+      message: 'Athlete onboarding completed successfully. You may now log in with your new pincode.',
+      athlete: sanitizeAthlete(athlete)
+    });
+  } catch (err) {
+    console.error('Athlete onboarding error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };

@@ -12,7 +12,15 @@ const athleteSchema = new mongoose.Schema({
   lname: { type: String, trim: true, default: '' },
   pincode: { type: String, default: null },
   firstLogin: { type: Boolean, default: true },
-  role: { type: String, default: 'user' }
+  securityAnswers: {
+    fullName: { type: String, trim: true, default: '' },
+    firstName: { type: String, trim: true, default: '' },
+    lastName: { type: String, trim: true, default: '' },
+    favoriteLunchFood: { type: String, trim: true, default: '' },
+    extraAnswer: { type: String, trim: true, default: '' },
+    extraQuestionLabel: { type: String, trim: true, default: '' }
+  },
+  role: { type: String, default: 'athlete' }
 }, { timestamps: true });
 
 const Athlete = mongoose.models.Athlete || mongoose.model('Athlete', athleteSchema);

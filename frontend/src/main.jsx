@@ -16,6 +16,11 @@ import UserConfigComponent from './components/admin-side/sub-pages/user-config'
 import MachineMonitoringComponent from './components/admin-side/sub-pages/machine-monitoring'
 import SettingsComponent from './components/admin-side/sub-pages/settings'
 
+//process login route
+import LoginComponent from './components/updated_process/login'
+import FirstTimeSetup from './components/updated_process/first-time-setup'
+import AthleteDashboard from './components/updated_process/athlete-dashboard'
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
@@ -23,7 +28,9 @@ root.render(
     <BrowserRouter>   
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/enter-gmail" element={<MainContentProcess />} />
+        <Route path="/login" element={<LoginComponent />} />
+        <Route path="/athlete/setup" element={<FirstTimeSetup />} />
+        <Route path="/athlete/dashboard" element={<AthleteDashboard />} />
         <Route path="/notification" element={<NotificationPage />} />
         <Route path="/updates" element={<UpdatePage />} />
         <Route path="/enter-code" element={<EnterEmailCode />} />

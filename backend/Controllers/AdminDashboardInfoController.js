@@ -1,4 +1,4 @@
-import Athlete from '../Models/athlete.js';
+import Athlete from "../Models/athlete.js";
 
 export const getAdminDashboardSummary = async (req, res) => {
   if (!req.user || req.user.role !== 'admin') {

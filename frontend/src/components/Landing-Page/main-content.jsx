@@ -56,7 +56,7 @@ function MainContent() {
           and effectively, specially made for WIT student-athletes.
         </motion.h4>
 
-        <Link to="/enter-gmail">
+        <Link to="/login">
           <motion.button
             className="main-content-button"
             initial={{ opacity: 0, x: -80 }}
