@@ -20,6 +20,7 @@ import SettingsComponent from './components/admin-side/sub-pages/settings'
 import LoginComponent from './components/updated_process/login'
 import FirstTimeSetup from './components/updated_process/first-time-setup'
 import AthleteDashboard from './components/updated_process/athlete-dashboard'
+import ForgotPin from './components/updated_process/forgot-pin'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -29,6 +30,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<LoginComponent />} />
+        <Route path="/forgot-pin" element={<ForgotPin />} />
         <Route path="/athlete/setup" element={<FirstTimeSetup />} />
         <Route path="/athlete/dashboard" element={<AthleteDashboard />} />
         <Route path="/notification" element={<NotificationPage />} />

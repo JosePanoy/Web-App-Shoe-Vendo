@@ -40,14 +40,32 @@ function LoginComponent () {
     digits[index] = value
     setter(digits)
 
-    if (value && index < digits.length - 1) {
+    if (!value) return
+
+    if (index < digits.length - 1) {
       refs.current[index + 1]?.focus()
+      return
+    }
+
+    if (type === 'id') {
+      pinRefs.current[0]?.focus()
     }
   }
 
   const handleKeyDown = (type, index, event) => {
     const refs = type === 'id' ? idRefs : pinRefs
     const digits = type === 'id' ? idDigits : pinDigits
+
+    if (
+      type === 'pin' &&
+      event.key === 'Backspace' &&
+      !digits[index] &&
+      index === 0
+    ) {
+      event.preventDefault()
+      idRefs.current[idDigits.length - 1]?.focus()
+      return
+    }
 
     if (event.key === 'Backspace' && !digits[index] && index > 0) {
       event.preventDefault()
@@ -56,9 +74,47 @@ function LoginComponent () {
 
     if (event.key === 'ArrowLeft' && index > 0) {
       refs.current[index - 1]?.focus()
+      return
     }
+
+    if (type === 'pin' && event.key === 'ArrowLeft' && index === 0) {
+      idRefs.current[idDigits.length - 1]?.focus()
+      return
+    }
+
     if (event.key === 'ArrowRight' && index < digits.length - 1) {
       refs.current[index + 1]?.focus()
+      return
+    }
+
+    if (type === 'id' && event.key === 'ArrowRight' && index === digits.length - 1) {
+      pinRefs.current[0]?.focus()
+    }
+  }
+
+  const handleIdDigitFocus = index => {
+    for (let i = 0; i < index; i += 1) {
+      const input = idRefs.current[i]
+      if (input && !input.value) {
+        input.focus()
+        return
+      }
+    }
+  }
+
+  const handlePinDigitFocus = index => {
+    const firstEmptyId = idRefs.current.findIndex(input => input && !input.value)
+    if (firstEmptyId !== -1) {
+      idRefs.current[firstEmptyId]?.focus()
+      return
+    }
+
+    for (let i = 0; i < index; i += 1) {
+      const input = pinRefs.current[i]
+      if (input && !input.value) {
+        input.focus()
+        return
+      }
     }
   }
 
@@ -74,7 +130,11 @@ function LoginComponent () {
 
     if (type === 'id') {
       setIdDigits(digits)
-      idRefs.current[Math.min(text.length, digits.length - 1)]?.focus()
+      if (text.length >= digits.length) {
+        pinRefs.current[0]?.focus()
+      } else {
+        idRefs.current[Math.min(text.length, digits.length - 1)]?.focus()
+      }
     } else {
       setPinDigits(digits)
       pinRefs.current[Math.min(text.length, digits.length - 1)]?.focus()
@@ -188,8 +248,11 @@ function LoginComponent () {
                     onChange={event =>
                       handleDigitChange('id', index, event.target.value)
                     }
+                    onFocus={() => handleIdDigitFocus(index)}
                     onPaste={event => handlePaste('id', event)}
-                    className='login__digit-input'
+                    className={`login__digit-input${
+                      index === 0 && !digit ? ' login__digit-input--start' : ''
+                    }`}
                     aria-label={`ID digit ${index + 1}`}
                   />
                 ))}
@@ -213,6 +276,7 @@ function LoginComponent () {
                     onChange={event =>
                       handleDigitChange('pin', index, event.target.value)
                     }
+                    onFocus={() => handlePinDigitFocus(index)}
                     onPaste={event => handlePaste('pin', event)}
                     className='login__digit-input login__digit-input--pin'
                     aria-label={`Pincode digit ${index + 1}`}
@@ -241,6 +305,9 @@ function LoginComponent () {
             >
               {reminder ? 'Hide' : 'Show'} quick reminders
             </button>
+            <Link className='login__link' to='/forgot-pin'>
+              Forgot your pincode? Reset it here
+            </Link>
             <Link className='login__link' to='/athlete/setup'>
               First time logging in? Activate your account
             </Link>

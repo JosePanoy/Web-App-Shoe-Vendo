@@ -20,6 +20,9 @@ const athleteSchema = new mongoose.Schema({
     extraAnswer: { type: String, trim: true, default: '' },
     extraQuestionLabel: { type: String, trim: true, default: '' }
   },
+  pinResetCount: { type: Number, default: 0 },
+  pinResetBlocked: { type: Boolean, default: false },
+  pinResetLastAt: { type: Date, default: null },
   role: { type: String, default: 'athlete' }
 }, { timestamps: true });
 
