@@ -40,8 +40,10 @@ function AdminMainDashboard () {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768
       setIsMobile(mobile)
-      if (!mobile) setSidebarVisible(true)
+      setSidebarVisible(!mobile)
     }
+
+    handleResize()
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -77,8 +79,8 @@ function AdminMainDashboard () {
               <p className='admin-dashboard__menu-title'>Menu</p>
               <ul>
                 <li>Dashboard</li>
-                <li>Settings</li>
                 <li>Profile</li>
+                <li>Settings</li>
               </ul>
             </div>
             <div className='sidebar-bottom'>
@@ -89,17 +91,19 @@ function AdminMainDashboard () {
 
         <div className='admin-dashboard__main'>
           <nav className='admin-main-navbar'>
-            {isMobile && (
-              <button
-                className='admin-dashboard__toggle-btn'
-                onClick={toggleSidebar}
-              >
-                <HiOutlineMenu size={24} />
-              </button>
-            )}
             <div className='navbar-left'>
-              <h3>Dashboard</h3>
-              <p>Overview</p>
+              {isMobile && (
+                <button
+                  className='admin-dashboard__toggle-btn'
+                  onClick={toggleSidebar}
+                >
+                  <HiOutlineMenu size={24} />
+                </button>
+              )}
+              <div className='navbar-title'>
+                <h3>Dashboard</h3>
+                <p>Overview</p>
+              </div>
             </div>
             <div className='navbar-right'>
               <div className='user-box'>
