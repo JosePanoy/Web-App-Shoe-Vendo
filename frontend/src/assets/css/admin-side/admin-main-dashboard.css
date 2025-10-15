@@ -114,17 +114,51 @@
 }
 
 .admin-dashboard__sidebar li {
-  padding: 10px 0;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-  border-radius: 6px;
-  padding-left: 10px;
-  font-weight: 700;
+  padding: 0;
+  cursor: default;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
 }
 
+/* Remove heavy li hover; link handles hover */
 .admin-dashboard__sidebar li:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: transparent;
+}
+
+/* Sidebar link styles (NavLink anchors) */
+.admin-dashboard__menu-list .admin-dashboard__link {
+  color: #ffffff !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  background: transparent;
+  font-weight: 650;
+}
+
+.admin-dashboard__menu-list .admin-dashboard__link:hover {
+  color: #ffffff !important;
+  transform: translateX(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+/* Active state with left accent */
+.admin-dashboard__menu-list .admin-dashboard__link.active {
+  color: #ffffff !important;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  box-shadow: inset 4px 0 0 0 #413e7b; /* colored left accent */
+  transform: none;
+}
+
+/* Make sure link text wraps nicely on small screens */
+.admin-dashboard__menu-list .admin-dashboard__link .label {
+  display: inline-block;
 }
 
 .sidebar-bottom {

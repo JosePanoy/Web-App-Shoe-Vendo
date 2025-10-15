@@ -1,7 +1,8 @@
+//insertAdmin.js
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
-import Admin from './Models/admin.js';
+import Admin from './models/admin.js';
 
 dotenv.config();
 
@@ -15,12 +16,12 @@ const insertAdmin = async () => {
     const hashedPassword = await bcrypt.hash('pass123', 10);
 
     const admin = new Admin({
-      fname: 'Jose',
-      lname: 'Rizal',
+      fname: 'Christiano',
+      lname: 'Ronaldo',
       contactNum: '09123456789',
-      address: 'Calamba, Laguna',
+      address: 'Portugal, Spain',
       pincode: 111111,
-      email: 'phhero@example.com',
+      email: 'r7@gmail.com',
       password: hashedPassword
     });
 

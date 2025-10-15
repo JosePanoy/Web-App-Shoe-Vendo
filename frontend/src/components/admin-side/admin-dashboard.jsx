@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink, Outlet } from 'react-router-dom'
 import { HiOutlineMenu } from 'react-icons/hi'
 import LogoutBtn from './sub-components/logout-btn'
 import AdminWelcome from './sub-components/admin-welcome'
@@ -79,8 +79,8 @@ function AdminMainDashboard () {
               <p className='admin-dashboard__menu-title'>Menu</p>
               <ul>
                 <li>Dashboard</li>
-                <li>Profile</li>
                 <li>Settings</li>
+                <li>Profile</li>
               </ul>
             </div>
             <div className='sidebar-bottom'>
@@ -121,6 +121,10 @@ function AdminMainDashboard () {
               </div>
             </div>
           </nav>
+
+          <div className='admin-dashboard__content'>
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

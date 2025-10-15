@@ -1,0 +1,308 @@
+.usercfg_compo__root {
+    width: 100%;
+    .usercfg_compo__root {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .usercfg_compo__container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        align-items: start;
+    }
+
+    .usercfg_compo__card {
+        background: #fff;
+        padding: 18px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(22, 28, 36, 0.06);
+        box-sizing: border-box;
+        width: 100%;
+        transition: transform 220ms cubic-bezier(.2, .9, .2, 1), box-shadow 220ms ease;
+    }
+
+    .usercfg_compo__card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(22, 28, 36, 0.12);
+    }
+
+    .usercfg_compo__title {
+        margin: 0 0 12px 0;
+        font-size: 1.25rem;
+        cursor: default;
+    }
+
+    .usercfg_compo__table-wrap {
+        overflow-x: auto;
+    }
+
+    .usercfg_compo__table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 0;
+    }
+
+    .usercfg_compo__table thead th {
+        text-align: left;
+        padding: 12px;
+        background: #f6f7f8;
+    }
+
+    .usercfg_compo__table td {
+        padding: 12px;
+        border-top: 1px solid #eee;
+        word-break: break-word;
+    }
+
+    .usercfg_compo__table tbody tr:hover {
+        background: rgba(6, 30, 52, 0.02);
+    }
+
+    .usercfg_compo__eligible--yes {
+        color: #2e8b2e;
+        font-weight: 700;
+    }
+
+    .usercfg_compo__eligible--no {
+        color: #d33;
+        font-weight: 700;
+    }
+
+    .usercfg_compo__btn--remove {
+        background: #eee;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        line-height: 1;
+        min-width: 72px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .usercfg_compo__btn--remove:hover {
+        background: #e0e0e0;
+    }
+
+    .usercfg_compo__add-row {
+        color: #9aa0a6;
+    }
+
+    .usercfg_compo__search {
+        margin-bottom: 12px;
+    }
+
+    .usercfg_compo__search input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #e6e6e6;
+        box-sizing: border-box;
+    }
+
+    /* Users search bar specific */
+    .usercfg_compo__search--users {
+        margin-bottom: 14px;
+    }
+
+    .usercfg_compo__search--users input {
+        box-shadow: 0 6px 16px rgba(38, 50, 56, 0.06);
+        border: none;
+        padding-left: 14px;
+    }
+
+    .usercfg_compo__search--users input::placeholder {
+        color: #9aa0a6;
+    }
+
+    .usercfg_compo__logs-wrap {
+        max-height: 360px;
+        overflow-y: auto;
+    }
+
+    .usercfg_compo__pagination {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+
+    .usercfg_compo__pgbtn {
+        background: #f3f4f6;
+        border: 1px solid #e6e6e6;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .usercfg_compo__pgbtn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .usercfg_compo__pgpages {
+        display: flex;
+        gap: 6px;
+    }
+
+    .usercfg_compo__pgnum {
+        background: transparent;
+        border: 1px solid transparent;
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .usercfg_compo__pgnum.active {
+        background: #3b2f8a;
+        color: #fff;
+        border-color: #3b2f8a;
+    }
+
+    /* ensure pagination for users inherits same color */
+    .usercfg_compo__pagination .usercfg_compo__pgnum.active {
+        background: #3b2f8a;
+        border-color: #3b2f8a;
+    }
+
+    .usercfg_compo__table--logs thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    .usercfg_compo__status--ok {
+        color: #2e8b2e;
+        font-weight: 700;
+    }
+
+    .usercfg_compo__status--fail {
+        color: #d33;
+        font-weight: 700;
+    }
+
+    /* Confirmation modal (global) */
+    .usercfg_compo__modal-overlay{
+        position:fixed;
+        inset:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(0,0,0,0.45);
+        z-index:1200;
+        padding:20px;
+    }
+    .usercfg_compo__modal{
+        width:min(560px,100%);
+        background:#fff;
+        border-radius:12px;
+        box-shadow:0 18px 40px rgba(8,12,20,0.18);
+        padding:16px 16px;
+        animation: userConfigModalIn .18s cubic-bezier(.2,.9,.2,1) both;
+    }
+    .usercfg_compo__modal h3{ margin:0 0 6px 0; font-size:1.05rem; color:#111 }
+    .usercfg_compo__modal p{ margin:0 0 12px 0; color:#444 }
+    .usercfg_compo__modal-actions{ display:flex; gap:10px; justify-content:flex-end }
+    .usercfg_compo__modal-btn{ padding:8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:600 }
+    .usercfg_compo__modal-btn.cancel{ background:#f3f4f6; color:#222 }
+    .usercfg_compo__modal-btn.confirm{ background:#c53030; color:#fff }
+
+    @keyframes userConfigModalIn{
+        from{ opacity:0; transform:translateY(-8px) scale(.996) }
+        to{ opacity:1; transform:translateY(0) scale(1) }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .usercfg_compo__container {
+            grid-template-columns: 1fr;
+        }
+
+        .usercfg_compo__logs-wrap {
+            max-height: 240px;
+        }
+    }
+
+    /* Fixes for very small screens to prevent overlap and horizontal overflow */
+    @media (max-width: 480px) {
+        .usercfg_compo__card {
+            padding: 12px;
+        }
+
+        .usercfg_compo__title {
+            font-size: 1.05rem;
+        }
+
+        .usercfg_compo__table thead th, .usercfg_compo__table td {
+            padding: 8px;
+        }
+
+        .usercfg_compo__logs-wrap {
+            max-height: 220px;
+        }
+
+        .usercfg_compo__table {
+            table-layout: fixed;
+        }
+
+        .usercfg_compo__table thead th, .usercfg_compo__table td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .usercfg_compo__pgpages {
+            gap: 4px;
+        }
+
+        .usercfg_compo__pgnum, .usercfg_compo__pgbtn {
+            padding: 6px 8px;
+            font-size: 0.7rem;
+        }
+
+        /* enforce smaller font sizes for tight screens */
+        .usercfg_compo__card,
+        .usercfg_compo__table td,
+        .usercfg_compo__table thead th,
+        .usercfg_compo__title,
+        .usercfg_compo__search input,
+        .usercfg_compo__pgbtn,
+        .usercfg_compo__pgnum {
+            font-size: 0.7rem !important;
+        }
+
+        /* Confirmation modal styles */
+        .usercfg_compo__modal-overlay{
+            position:fixed;
+            inset:0;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:rgba(0,0,0,0.45);
+            z-index:1200;
+            padding:20px;
+        }
+        .usercfg_compo__modal{
+            width:min(560px,100%);
+            background:#fff;
+            border-radius:12px;
+            box-shadow:0 18px 40px rgba(8,12,20,0.18);
+            padding:16px 16px;
+            animation: userConfigModalIn .18s cubic-bezier(.2,.9,.2,1) both;
+        }
+        .usercfg_compo__modal h3{ margin:0 0 6px 0; font-size:1.05rem; color:#111 }
+        .usercfg_compo__modal p{ margin:0 0 12px 0; color:#444 }
+        .usercfg_compo__modal-actions{ display:flex; gap:10px; justify-content:flex-end }
+        .usercfg_compo__modal-btn{ padding:8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:600 }
+        .usercfg_compo__modal-btn.cancel{ background:#f3f4f6; color:#222 }
+        .usercfg_compo__modal-btn.confirm{ background:#c53030; color:#fff }
+
+        @keyframes userConfigModalIn{
+            from{ opacity:0; transform:translateY(-8px) scale(.996) }
+            to{ opacity:1; transform:translateY(0) scale(1) }
+        }
+    
+    }}

@@ -1,5 +1,6 @@
-import User from '../Models/users.js'
-import Admin from '../Models/admin.js'
+// login.js
+import User from '../models/users.js'
+import Admin from '../models/admin.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 

@@ -1,0 +1,32 @@
+--- STEPS ---
+--------- IN FRONTEND
+
+1st:  cd frontend
+2nd: npm install react react-dom react-router-dom framer-motion
+3rd: npm install -D vite @vitejs/plugin-react @types/react @types/react-dom
+4th: npm install
+
+
+
+
+---------
+IN BACKEND --
+
+1st: new terminal
+2nd:  cd backend
+3rd: npm install express mongoose dotenv cors
+4th: npm install -D nodemon
+5th: npm install
+
+------------------NOW HOW TO RUN 
+IN FRONTEND 
+
+1st: new terminal
+2nd: cd frontend
+3rd: npm run dev
+
+
+IN BACKEND
+1st: cd backend
+2nd: npm start
+

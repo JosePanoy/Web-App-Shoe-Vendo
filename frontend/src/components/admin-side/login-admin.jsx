@@ -50,8 +50,8 @@ function LoginAdmin () {
       return
     }
     try {
-      const res = await axios.post('http://localhost:8000/api/login', {
-        pincode: parseInt(pincodeStr),
+      const res = await axios.post('http://localhost:8000/api/auth/login', {
+        pincode: pincodeStr,
         password,
         role: 'admin'
       })

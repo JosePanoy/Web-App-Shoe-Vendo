@@ -1,0 +1,59 @@
+.settings_compo__root { width:100%; }
+.settings_compo__title { margin:0 0 12px 0; font-size:1.6rem; }
+
+.settings_compo__card { background:#fff; padding:20px; border-radius:10px; box-shadow:0 8px 18px rgba(9,14,20,0.04); }
+.settings_compo__section { margin-bottom:18px; }
+.settings_compo__section-title { margin:0 0 10px 0; font-size:1rem; color:#333; }
+
+.settings_compo__grid { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap:14px; }
+.settings_compo__field { display:block; width:100%; }
+.settings_compo__field span { display:block; margin-bottom:8px; color:#666; }
+.settings_compo__field input { width:100%; max-width:100%; box-sizing:border-box; padding:10px 12px; border-radius:8px; border:1px solid #e6e6e6; background:#fff; }
+
+/* ensure grid children can shrink to avoid overflow on small screens */
+.settings_compo__grid > * { min-width: 0; }
+
+.settings_compo__actions { display:flex; gap:12px; align-items:center; margin-top:8px; }
+.settings_compo__btn { background:#111; color:#fff; padding:10px 14px; border-radius:8px; border:none; cursor:pointer; }
+.settings_compo__msg { margin-left:10px; padding:8px 12px; border-radius:8px; }
+.settings_compo__msg.success { background:#e6f7ea; color:#1f8a3a; }
+.settings_compo__msg.error { background:#fdecea; color:#b3261e; }
+
+/* responsive */
+@media (max-width:900px) { .settings_compo__grid { grid-template-columns:1fr; } }
+@media (max-width:480px) { .settings_compo__card { padding:12px; } .settings_compo__title{ font-size:1.2rem } .settings_compo__btn{ padding:8px 10px }}
+
+/* Confirmation modal overlay and box */
+.settings_compo__modal-overlay{
+	position:fixed;
+	inset:0;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background:rgba(0,0,0,0.45);
+	z-index:1200;
+	padding:20px;
+}
+.settings_compo__modal{
+	width:min(560px,100%);
+	background:#fff;
+	border-radius:12px;
+	box-shadow:0 18px 40px rgba(8,12,20,0.25);
+	padding:18px 18px 16px 18px;
+	transform:translateY(-6px);
+	animation: settingsModalIn .18s cubic-bezier(.2,.9,.2,1) both;
+}
+.settings_compo__modal h3{ margin:0 0 6px 0; font-size:1.05rem; color:#111 }
+.settings_compo__modal p{ margin:0 0 14px 0; color:#555; line-height:1.4 }
+.settings_compo__modal-actions{ display:flex; gap:10px; justify-content:flex-end }
+.settings_compo__modal-btn{ padding:8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:600 }
+.settings_compo__modal-btn.cancel{ background:#f3f4f6; color:#222 }
+.settings_compo__modal-btn.confirm{ background:#111; color:#fff }
+
+@keyframes settingsModalIn{
+	from{ opacity:0; transform:translateY(-10px) scale(.996) }
+	to{ opacity:1; transform:translateY(0) scale(1) }
+}
+
+/* make modal responsive */
+@media (max-width:480px){ .settings_compo__modal{ padding:14px; border-radius:10px } .settings_compo__modal-actions{ justify-content:flex-end } }
