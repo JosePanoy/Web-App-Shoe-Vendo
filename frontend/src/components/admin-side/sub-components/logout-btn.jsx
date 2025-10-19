@@ -2,14 +2,29 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LogOut } from 'lucide-react'
 
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || ''
+const API_BASE_URL = RAW_API_BASE.replace(/\/$/, '')
+
 function LogoutBtn () {
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
 
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    sessionStorage.removeItem('adminWelcomeShown')
-    navigate('/')
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token')
+    try {
+      if (API_BASE_URL && token) {
+        await fetch(`${API_BASE_URL}/api/auth/logout`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      }
+    } catch (_) {
+      // ignore
+    } finally {
+      localStorage.removeItem('token')
+      sessionStorage.removeItem('adminWelcomeShown')
+      navigate('/')
+    }
   }
 
   return (

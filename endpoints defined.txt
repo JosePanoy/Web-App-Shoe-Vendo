@@ -1,0 +1,28 @@
+
+/machine/check-for-shoes
+-- captures an image 
+-- runs the image against a trained model
+** I will need an endpoint where i can say whether a shoe was found or not.
+
+
+/machine/wait-for-coin
+-- activates coin slot
+-- waits for a single coin
+-- immediately returns the value of the dropped coin to your endpoint
+-- stops waiting.. and deactivates sensor for coin slot
+** I will need an endpoint where i can send the value of the coin
+
+/machine/start-basic-cleaning
+-- starts the basic cleaning recipe
+-- cleaning finished
+** I will need an endpoint where i can send that the cleaning is complete
+
+
+/machine/start-deep-cleaning
+-- starts the deep cleaning recipe
+-- cleaning finished
+** I will need an endpoint where i can send that the cleaning is complete
+
+/machine/check-temps
+-- sends back the current temperature and humidity
+** useful for maintanance schecks

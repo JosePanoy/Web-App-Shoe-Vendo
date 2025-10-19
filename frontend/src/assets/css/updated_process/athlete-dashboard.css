@@ -19,17 +19,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 4vw, 4rem) 1.4rem;
+  padding: clamp(2rem, 2vw, 4rem) 1.4rem;
 }
 
 .dashboard__card {
-  width: min(620px, 92vw);
+  width: min(760px, 96vw);
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 26px;
-  padding: clamp(2rem, 4vw, 2.8rem);
+  padding: clamp(2.2rem, 4.5vw, 3.2rem);
   box-shadow: 0 28px 48px rgba(15, 23, 42, 0.272);
   backdrop-filter: blur(14px);
+    
 }
 
 .dashboard__header {
@@ -78,6 +79,7 @@
 .dashboard__actions {
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
 .dashboard__logout {
@@ -174,6 +176,7 @@
 
 @media (max-width: 480px) {
   .dashboard__card {
+    width: 96vw;
     padding: 1.75rem;
   }
 
@@ -181,6 +184,9 @@
     font-size: 0.95rem;
   }
 }
+
+/* Cleaning flow spacing to avoid button overlap */
+.dashboard__flow { display:flex; flex-direction: column; gap: 18px; margin-bottom: 10px; }
 
 @media (min-width: 1181px) {
   .dashboard__card:hover {

@@ -6,9 +6,12 @@
   useRef
 } from 'react';
 import { motion } from 'framer-motion';
+
+// Realtime audit stream for usage logs
+let __usercfg_es__ = null;
 import '../../../assets/css/admin-side/sup-pages/user-config.css';
 
-const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || '';
 const API_BASE_URL = RAW_API_BASE.replace(/\/$/, '');
 
 const container = {
@@ -123,6 +126,8 @@ function UserConfigComponent() {
 
   useEffect(() => {
     fetchAthletes();
+    const id = setInterval(fetchAthletes, 15000);
+    return () => clearInterval(id);
   }, [fetchAthletes]);
 
   useEffect(() => {
@@ -333,24 +338,28 @@ function UserConfigComponent() {
     }
   };
 
-  const logs = [
-    { date: '2025-10-04', id: '56595', service: 'Standard Cleaning', status: 'Completed' },
-    { date: '2025-10-03', id: '58937', service: 'Deep Cleaning', status: 'Completed' },
-    { date: '2025-10-02', id: '57632', service: 'Deep Cleaning', status: 'Completed' },
-    { date: '2025-10-01', id: '50929', service: 'Standard Cleaning', status: 'Failed' },
-    { date: '2025-09-30', id: '59024', service: 'Standard Cleaning', status: 'Completed' }
-  ];
+  const [auditLogs, setAuditLogs] = useState([]); // realtime machine usage
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token || !API_BASE_URL) return undefined;
+    try {
+      __usercfg_es__ = new EventSource(`${API_BASE_URL}/api/admin/audit/stream?token=${encodeURIComponent(token)}`);
+      __usercfg_es__.onmessage = (ev) => {
+        try {
+          const payload = JSON.parse(ev.data);
+          // Keep only machine-related entries
+          const a = (payload.action || '').toUpperCase();
+          if (a.includes('CLEAN') || a.includes('COIN') || payload.recipe || payload.amount) {
+            setAuditLogs((prev) => [payload, ...prev].slice(0, 200));
+          }
+        } catch {}
+      };
+    } catch {}
+    return () => { try { __usercfg_es__?.close(); } catch {} };
+  }, []);
 
   const [query, setQuery] = useState('');
-  const filteredLogs = useMemo(() => {
-    if (!query) return logs;
-    const q = query.toLowerCase();
-    return logs.filter(
-      (l) => l.date.includes(q) || l.id.includes(q) || l.service.toLowerCase().includes(q)
-    );
-  }, [query]);
-
-  const formatDateFriendly = (dateStr) => {
+  const formatDateAudit = (dateStr) => {
     const d = new Date(dateStr);
     if (Number.isNaN(d.getTime())) return dateStr;
     const month = d.toLocaleString('en-US', { month: 'short' });
@@ -358,10 +367,37 @@ function UserConfigComponent() {
     const year = d.getFullYear();
     let hour = d.getHours();
     const minute = d.getMinutes().toString().padStart(2, '0');
-    const ampm = hour >= 12 ? 'pm' : 'am';
+    const ampm = hour >= 12 ? 'PM' : 'AM';
     hour = hour % 12 || 12;
-    return `${month} ${day}, ${year} - ${hour}:${minute}${ampm}`;
+    return `${month} ${day}, ${year} at ${hour}:${minute} ${ampm}`;
   };
+
+  const logs = useMemo(() => {
+    return (auditLogs || []).map((it) => {
+      const service = it.recipe ? (it.recipe === 'deep' ? 'Deep Cleaning' : 'Standard Cleaning') : '—';
+      let status = '—';
+      const a = (it.action || '').toUpperCase();
+      if (a.includes('DONE')) status = 'Completed';
+      else if (a.includes('START')) status = 'Started';
+      else if (a.includes('COIN')) status = 'Coin';
+      return {
+        date: it.createdAt,
+        id: it.actorName || it.actorId || '—',
+        service,
+        status
+      };
+    });
+  }, [auditLogs]);
+
+  const filteredLogs = useMemo(() => {
+    if (!query) return logs;
+    const q = query.toLowerCase();
+    return logs.filter(
+      (l) => (l.date || '').toString().toLowerCase().includes(q) || (l.id || '').toString().toLowerCase().includes(q) || (l.service || '').toLowerCase().includes(q)
+    );
+  }, [logs, query]);
+
+  const formatDateFriendly = formatDateAudit;
 
   const [page, setPage] = useState(1);
   const pageSize = 5;
@@ -539,7 +575,7 @@ function UserConfigComponent() {
                 </tr>
               </thead>
               <tbody>
-                {paginatedLogs.map((log, index) => (
+                {paginatedLogs.length ? paginatedLogs.map((log, index) => (
                   <tr key={`${log.id}-${index}`}>
                     <td>{formatDateFriendly(log.date)}</td>
                     <td>{log.id}</td>
@@ -554,7 +590,9 @@ function UserConfigComponent() {
                       {log.status}
                     </td>
                   </tr>
-                ))}
+                )) : (
+                  <tr className='usercfg_compo__empty'><td colSpan={4}>No usage logs yet.</td></tr>
+                )}
               </tbody>
             </table>
           </div>

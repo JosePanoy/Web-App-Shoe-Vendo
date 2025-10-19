@@ -5,8 +5,7 @@ import LandingPageMainNav from '../Landing-Page/main-nav'
 import MainFooter from '../resuable-components/main-footer'
 import '../../assets/css/updated_process/forgot-pin.css'
 
-const RAW_API_BASE =
-  import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || ''
 const API_BASE_URL = RAW_API_BASE.replace(/\/$/, '')
 
 const buildDigitArray = length => Array.from({ length }, () => '')

@@ -1,0 +1,4 @@
+.use_clean__voucher-summary { display:flex; gap:16px; margin:12px 0; }
+.use_clean__voucher-summary > div { background:#f7f9fb; border:1px solid #e6e9ec; border-radius:12px; padding:10px 14px; }
+.use_clean__voucher-summary span { color:#536471; font-size:12px; display:block; }
+.use_clean__voucher-summary strong { font-size:20px; }

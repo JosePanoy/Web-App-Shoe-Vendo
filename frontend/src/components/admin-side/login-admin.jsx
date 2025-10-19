@@ -5,6 +5,8 @@ import LandingPageMainNav from '../Landing-Page/main-nav'
 import { Eye, EyeOff } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || ''
+const API_BASE_URL = RAW_API_BASE.replace(/\/$/, '')
 import WitLogo from '../../assets/icons/WIT-Logo.png'
 
 function LoginAdmin () {
@@ -50,7 +52,7 @@ function LoginAdmin () {
       return
     }
     try {
-      const res = await axios.post('http://localhost:8000/api/auth/login', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         pincode: pincodeStr,
         password,
         role: 'admin'

@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Athlete from '../Models/athlete.js';
+import { recordAudit } from './auditController.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secretkey';
 
@@ -41,13 +42,31 @@ export const loginAthlete = async (req, res) => {
       idNumber: athlete.idNumber,
       firstLogin: athlete.firstLogin
     });
+    try {
+      await recordAudit(req, {
+        actorId: String(athlete._id || ''),
+        actorRole: 'athlete',
+        actorName: `${athlete.fname || ''} ${athlete.lname || ''}`.trim(),
+        action: 'ATHLETE LOGIN',
+        details: { route: '/api/auth/athlete/login' }
+      });
+    } catch {}
   } catch (err) {
     console.error('Athlete login error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };
 
-export const logoutAthlete = async (_req, res) => {
+export const logoutAthlete = async (req, res) => {
+  try {
+    const user = req.user || {};
+    await recordAudit(req, {
+      actorId: String(user.id || ''),
+      actorRole: 'athlete',
+      actorName: user.idNumber ? `ID ${user.idNumber}` : '',
+      action: 'ATHLETE LOGOUT'
+    });
+  } catch {}
   return res.json({ message: 'Logout successful.' });
 };
 

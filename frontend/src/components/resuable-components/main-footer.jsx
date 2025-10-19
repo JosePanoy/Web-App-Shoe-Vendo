@@ -21,7 +21,7 @@ function MainFooter() {
             src={WitLogo}
             alt="WIT Logo"
             className="main-footer__wit-icon"
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: false, amount: 0.6 }}
@@ -30,7 +30,7 @@ function MainFooter() {
 
         <motion.span
           className="main-footer__text"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: false, amount: 0.6 }}
@@ -44,7 +44,7 @@ function MainFooter() {
           src={FBLogo}
           alt="Facebook"
           className="main-footer__icon"
-          initial={{ opacity: 0, y: 70 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
           viewport={{ once: false, amount: 0.6 }}
@@ -54,7 +54,7 @@ function MainFooter() {
           src={InstagramLogo}
           alt="Instagram"
           className="main-footer__icon"
-          initial={{ opacity: 0, y: 70 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
           viewport={{ once: false, amount: 0.6 }}

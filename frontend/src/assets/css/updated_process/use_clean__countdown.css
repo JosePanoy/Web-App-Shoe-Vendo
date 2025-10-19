@@ -1,0 +1,13 @@
+:root { --uc-accent:#0f243e; --uc-muted:#eef2f5; }
+.use_clean__countdown { display:flex; flex-direction:column; align-items:center; gap:12px; }
+.use_clean__count-wrapper { display:grid; place-items:center; width:min(420px, 90vw); aspect-ratio:1/1; }
+.use_clean__circle { width:100%; height:100%; border-radius:50%; display:grid; place-items:center; background:conic-gradient(var(--uc-accent) 0%, var(--uc-muted) 0% 100%); }
+.use_clean__circle-inner { width:85%; height:85%; border-radius:50%; background:#0f243e; color:#fff; display:grid; place-items:center; box-shadow:inset 0 0 0 8px rgba(255,255,255,.08); }
+.use_clean__digits { font-size: clamp(36px, 12vw, 88px); font-weight:800; letter-spacing:2px; }
+.use_clean__notice { color:#536471; font-size:14px; }
+
+@media (max-width: 360px) {}
+@media (min-width: 361px) and (max-width: 480px) {}
+@media (min-width: 481px) and (max-width: 767px) {}
+@media (min-width: 768px) and (max-width: 1180px) {}
+@media (min-width: 1181px) {}
