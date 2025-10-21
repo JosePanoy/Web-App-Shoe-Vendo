@@ -5,6 +5,9 @@ const transactionSchema = new mongoose.Schema({
   serviceType: { type: String, enum: ['standard', 'deep'], required: true },
   status: { type: String, enum: ['in-progress', 'completed', 'error'], default: 'in-progress' },
   amount: { type: Number, required: true },
+  // Cycle timing
+  durationSec: { type: Number, default: 0 },
+  expectedCompleteAt: { type: Date, default: null },
   timestamp: { type: Date, default: Date.now }
 }, { timestamps: true });
 

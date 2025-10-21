@@ -1,4 +1,5 @@
 import Machine from '../models/machine.js';
+import Transaction from '../models/transaction.js';
 import jwt from 'jsonwebtoken';
 
 export const getMachineStatus = async (_req, res) => {
@@ -14,6 +15,19 @@ export const getMachineStatus = async (_req, res) => {
       lastMaintenance: payload.lastService || null,
       updatedAt: payload.updatedAt || null
     };
+    // Attach timing info from the most recent in-progress transaction (if any)
+    if (statusText === 'in-use') {
+      const tx = await Transaction.findOne({ status: 'in-progress' }).sort({ createdAt: -1 });
+      if (tx?.expectedCompleteAt instanceof Date) {
+        const now = Date.now();
+        const remainingMs = tx.expectedCompleteAt.getTime() - now;
+        mapped.expectedCompleteAt = tx.expectedCompleteAt;
+        mapped.remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+      } else {
+        mapped.expectedCompleteAt = null;
+        mapped.remainingSec = null;
+      }
+    }
     res.json(mapped);
   } catch (err) {
     console.error('Get machine status error:', err);
@@ -53,6 +67,18 @@ export const streamMachine = async (req, res) => {
           lastMaintenance: payload.lastService || null,
           updatedAt: payload.updatedAt || new Date()
         };
+        if (statusText === 'in-use') {
+          const tx = await Transaction.findOne({ status: 'in-progress' }).sort({ createdAt: -1 });
+          if (tx?.expectedCompleteAt instanceof Date) {
+            const now = Date.now();
+            const remainingMs = tx.expectedCompleteAt.getTime() - now;
+            mapped.expectedCompleteAt = tx.expectedCompleteAt;
+            mapped.remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+          } else {
+            mapped.expectedCompleteAt = null;
+            mapped.remainingSec = null;
+          }
+        }
         res.write(`data: ${JSON.stringify(mapped)}\n\n`);
       } catch {}
     };
