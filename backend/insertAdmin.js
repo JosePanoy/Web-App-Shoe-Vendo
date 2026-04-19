@@ -16,12 +16,12 @@ const insertAdmin = async () => {
     const hashedPassword = await bcrypt.hash('pass123', 10);
 
     const admin = new Admin({
-      fname: 'George',
-      lname: 'Chuo',
+      fname: 'Sample',
+      lname: 'Admin',
       contactNum: '09111111111',
       address: 'Sulong Alim',
-      pincode: 191919,
-      email: 'jose@gmail.com',
+      pincode: 123456,
+      email: 'admin@gmail.com',
       password: hashedPassword
     });
 
